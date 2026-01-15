@@ -101,6 +101,8 @@ class ScoringEngine {
         newScore = 0;
       }
 
+      const change = newScore - previousScore;
+
       lead.currentScore = newScore;
       lead.updatedAt = new Date();
       await lead.save();
