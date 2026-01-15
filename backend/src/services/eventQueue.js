@@ -8,8 +8,7 @@ const eventQueue = new Bull('lead-scoring-events', REDIS_URL, {
     tls: REDIS_URL.startsWith('rediss://') ? {
       rejectUnauthorized: false
     } : undefined,
-    maxRetriesPerRequest: null,
-    enableOfflineQueue: false
+    maxRetriesPerRequest: null
   },
   defaultJobOptions: {
     attempts: 3,
