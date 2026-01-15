@@ -4,6 +4,13 @@ const scoringEngine = require('./scoringEngine');
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 
 const eventQueue = new Bull('lead-scoring-events', REDIS_URL, {
+  redis: {
+    tls: REDIS_URL.startsWith('rediss://') ? {
+      rejectUnauthorized: false
+    } : undefined,
+    maxRetriesPerRequest: null,
+    enableOfflineQueue: false
+  },
   defaultJobOptions: {
     attempts: 3,
     backoff: {
